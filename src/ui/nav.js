@@ -2,16 +2,16 @@ import { ScrollTrigger, scrollToTarget } from '../lib/motion.js';
 
 const nav = document.querySelector('[data-nav]');
 
-let keptOpen = false;
+let held = null;
 
 export function setNavTone(tone) {
   nav.dataset.tone = tone;
 }
 
-/** Keeps the menu on screen while a section is resting, even if the page is still moving down. */
-export function keepNavOpen(open) {
-  keptOpen = open;
-  if (open) nav.classList.remove('is-hidden');
+/** Lets a section keep the menu 'open' or 'hidden' whichever way the page moves. `null` lets go. */
+export function holdNav(state) {
+  held = state;
+  if (state) nav.classList.toggle('is-hidden', state === 'hidden');
 }
 
 export function initNav() {
@@ -28,8 +28,9 @@ export function initNav() {
     start: 0,
     end: 'max',
     onUpdate: (self) => {
+      if (held) return;
       const goingDown = self.direction === 1;
-      nav.classList.toggle('is-hidden', !keptOpen && goingDown && self.scroll() > 160);
+      nav.classList.toggle('is-hidden', goingDown && self.scroll() > 160);
     },
   });
 

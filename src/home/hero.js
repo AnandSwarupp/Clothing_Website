@@ -1,7 +1,7 @@
 import { mediaUrl } from '../data/products.js';
 import { gsap, isPortraitScreen, reducedMotion, ScrollTrigger } from '../lib/motion.js';
 import { playSafely } from '../lib/video.js';
-import { keepNavOpen, setNavTone } from '../ui/nav.js';
+import { holdNav, setNavTone } from '../ui/nav.js';
 
 const hero = document.querySelector('[data-hero]');
 const stage = hero.querySelector('[data-hero-stage]');
@@ -175,7 +175,7 @@ export function initHeroScroll() {
         onUpdate: (self) => {
           if (self.isActive) setNavTone(self.progress > LANDS_AT * 0.5 ? 'dark' : 'light');
           const nowLanded = self.progress > LANDS_AT * 0.9;
-          keepNavOpen(nowLanded && self.isActive);
+          holdNav(nowLanded && self.isActive ? 'open' : null);
           if (nowLanded === landed) return;
           landed = nowLanded;
           if (landed) reveal.play();

@@ -409,7 +409,8 @@ button {
   margin-top: clamp(26px, 2.1vw, 40px);
 }
 
-.hero__actions .link {
+.hero__actions .link,
+.story__text .link {
   padding-bottom: 7px;
   font-size: clamp(12px, 0.7vw, 13.5px);
   font-weight: 500;
@@ -418,7 +419,8 @@ button {
 }
 
 /* A bigger area to tap than the small text itself. */
-.hero__actions .link::before {
+.hero__actions .link::before,
+.story__text .link::before {
   content: '';
   position: absolute;
   inset: -14px -8px;
@@ -664,7 +666,6 @@ button {
 /* Lookbook */
 .lookbook {
   overflow: clip;
-  padding-bottom: clamp(70px, 11vw, 170px);
 }
 
 .lookbook__cover {
@@ -710,62 +711,146 @@ button {
   line-height: 1;
 }
 
-.lookbook__spread {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: 16px;
-  padding: clamp(64px, 9vw, 140px) var(--gutter) 0;
+/* Stone, Wool, Silk. Without animation this is a simple gallery under the words. */
+.story__stage {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: clamp(36px, 5vw, 72px);
+  padding: clamp(64px, 9vw, 140px) var(--gutter);
 }
 
-.lookbook__item > div {
-  position: relative;
-  overflow: hidden;
+.story__track {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.story__pair {
+  display: contents;
+}
+
+.story__photo {
+  width: 100%;
+  height: auto;
   background: var(--paper);
 }
 
-.lookbook__item--walking {
-  grid-column: 1 / span 5;
-  grid-row: 1 / span 2;
+.story__text {
+  text-align: center;
 }
 
-.lookbook__item--walking > div {
-  aspect-ratio: 2 / 3;
-}
-
-.lookbook__copy {
-  grid-column: 7 / span 5;
-  grid-row: 1;
-  align-self: start;
-  padding-top: clamp(20px, 5vw, 80px);
-}
-
-.lookbook__quote {
-  margin-bottom: 1.1em;
+.story__line {
   font-family: var(--serif);
-  font-size: clamp(2.1rem, 3.9vw, 4.5rem);
-  line-height: 1.1;
+  font-size: clamp(1.4rem, 1.75vw, 2.1rem);
+  font-style: italic;
 }
 
-.lookbook__item--silk {
-  grid-column: 7 / -1;
-  grid-row: 2;
-  align-self: end;
-  margin-right: calc(var(--gutter) * -1);
+.story__words {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.4em;
+  margin-bottom: clamp(10px, 1.1vw, 20px);
+  font-family: var(--serif);
+  font-size: clamp(5.4rem, min(11.5vw, 26svh), 13.5rem);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: 1.12;
 }
 
-.lookbook__item--silk > div {
-  aspect-ratio: 16 / 10;
+/* The screen holds still. The photos sit on one tall track, first pair at the bottom. */
+.story.is-moving {
+  height: 360svh;
 }
 
-.lookbook__item--portrait {
-  grid-column: 5 / span 3;
-  grid-row: 3;
-  margin-top: clamp(-110px, -6vw, -36px);
-  z-index: 1;
+.story.is-moving .story__stage {
+  position: sticky;
+  top: 0;
+  display: block;
+  height: 100svh;
+  padding: 0;
+  overflow: hidden;
 }
 
-.lookbook__item--portrait > div {
-  aspect-ratio: 3 / 4;
+.story.is-moving .story__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0;
+  will-change: transform;
+}
+
+.story.is-moving .story__pair {
+  position: relative;
+  display: block;
+  flex: none;
+  height: 125svh;
+}
+
+.story.is-moving .story__photo {
+  position: absolute;
+}
+
+.story.is-moving .story__photo--courtyard {
+  top: 18svh;
+  left: var(--gutter);
+  width: 32vw;
+}
+
+.story.is-moving .story__photo--arrival {
+  right: var(--gutter);
+  bottom: 17svh;
+  width: 31vw;
+}
+
+.story.is-moving .story__photo--walking {
+  top: 20svh;
+  right: calc(50% + 15vw);
+  width: min(30vw, 50.6svh);
+}
+
+.story.is-moving .story__photo--portrait {
+  right: 8vw;
+  bottom: 19svh;
+  width: min(26vw, 43.5svh);
+}
+
+.story.is-moving .story__photo--dress {
+  top: 24svh;
+  right: calc(50% + 15vw);
+  width: min(30vw, 50.6svh);
+}
+
+.story.is-moving .story__photo--silk {
+  top: 20svh;
+  right: var(--gutter);
+  width: 32vw;
+}
+
+.story.is-moving .story__text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.story.is-moving .story__text .link {
+  pointer-events: auto;
+}
+
+.story.is-moving .story__words {
+  display: grid;
+  overflow: hidden;
+}
+
+.story.is-moving .story__word {
+  grid-area: 1 / 1;
 }
 
 .link {
@@ -1471,25 +1556,48 @@ button {
     aspect-ratio: 4 / 5;
   }
 
-  .lookbook__spread {
-    display: block;
+  /* Too narrow for photos beside the word, so a pair rests above and below it. */
+  .story.is-moving .story__pair {
+    height: 118svh;
   }
 
-  .lookbook__item--walking {
-    width: 82%;
+  .story.is-moving .story__photo {
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    height: min(33svh, calc(50svh - 120px));
   }
 
-  .lookbook__copy {
-    padding-block: 44px;
+  .story.is-moving .story__photo--courtyard,
+  .story.is-moving .story__photo--arrival,
+  .story.is-moving .story__photo--silk {
+    width: min(78vw, 40svh);
+    height: auto;
   }
 
-  .lookbook__item--silk {
-    margin-inline: calc(var(--gutter) * -1);
+  .story.is-moving .story__photo:first-child {
+    bottom: calc(50% + 112px);
+    left: var(--gutter);
   }
 
-  .lookbook__item--portrait {
-    width: 64%;
-    margin: -14vw 0 0 auto;
+  .story.is-moving .story__photo:last-child {
+    top: calc(50% + 112px);
+    right: var(--gutter);
+  }
+
+  /* The words sit on a small ivory plate, and the photos pass behind it. */
+  .story.is-moving .story__text {
+    inset: 50% auto auto 50%;
+    width: max-content;
+    padding: 16px 26px;
+    background: var(--ivory);
+    transform: translate(-50%, -50%);
+  }
+
+  .story.is-moving .story__words {
+    font-size: min(21vw, 6rem);
   }
 
   .craft__shade {

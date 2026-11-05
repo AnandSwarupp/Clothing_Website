@@ -8,6 +8,7 @@ import { initEdit } from './home/edit.js';
 import { initHeroScroll, prepareHero, revealHeroTitle, startHeroFilm } from './home/hero.js';
 import { runIntro } from './home/intro.js';
 import { initReveals } from './home/reveals.js';
+import { initStory } from './home/story.js';
 import { ScrollTrigger, fontsReady, startSmoothScroll } from './lib/motion.js';
 import { setupLazyVideos } from './lib/video.js';
 import { initCursor } from './ui/cursor.js';
@@ -25,6 +26,7 @@ async function start() {
   initEdit();
   initNav();
   initReveals();
+  initStory();
   initHeroScroll();
   initCraft();
   setupLazyVideos();

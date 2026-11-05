@@ -1,4 +1,4 @@
-import { DESKTOP, SplitText, fitText, gsap, reducedMotion } from '../lib/motion.js';
+import { SplitText, fitText, gsap, reducedMotion } from '../lib/motion.js';
 
 function risingTitles() {
   gsap.utils.toArray('[data-rise]').forEach((element) => {
@@ -13,19 +13,6 @@ function risingTitles() {
       stagger: 0.035,
       ease: 'expo.out',
       scrollTrigger: { trigger: element, start: 'top 90%' },
-    });
-  });
-}
-
-function risingLines() {
-  gsap.utils.toArray('[data-lines]').forEach((element) => {
-    const { lines } = SplitText.create(element, { type: 'lines', mask: 'lines', linesClass: 'ln' });
-    gsap.from(lines, {
-      yPercent: 110,
-      duration: 1.2,
-      stagger: 0.1,
-      ease: 'expo.out',
-      scrollTrigger: { trigger: element, start: 'top 85%' },
     });
   });
 }
@@ -63,29 +50,6 @@ function parallax() {
         scrollTrigger: { trigger: element.closest('figure, div'), start: 'top bottom', end: 'bottom top', scrub: true },
       },
     );
-  });
-
-  // On larger screens each piece of the spread travels at its own speed, which creates the depth.
-  // Phones stack everything in one column, where drifting pieces would slide over the text.
-  gsap.matchMedia().add(DESKTOP, () => {
-    gsap.utils.toArray('[data-drift]').forEach((element) => {
-      const amount = Number(element.dataset.drift);
-      gsap.fromTo(
-        element,
-        { y: () => innerHeight * (amount / 100) },
-        {
-          y: () => innerHeight * (-amount / 100),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: element,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-            invalidateOnRefresh: true,
-          },
-        },
-      );
-    });
   });
 }
 
@@ -137,7 +101,6 @@ export function initReveals() {
     return;
   }
   risingTitles();
-  risingLines();
   revealMedia();
   parallax();
   invitation();

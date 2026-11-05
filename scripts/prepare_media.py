@@ -164,6 +164,10 @@ def lookbook():
         "silk": ("Lookbook, silk detail.png", None, 1672),
         # The approved portrait came out 4:3, so it is cropped to 3:4 around him.
         "portrait": ("Lookbook, portrait.png", (360, 0, 1174, 1086), 814),
+        "courtyard": ("courtyard.png", None, 1536),
+        # Trimmed from the left so the two of them fill more of the frame.
+        "arrival": ("Hero start, wide.png", (360, 0, 1672, 941), 1312),
+        "dress": ("Women panel.png", None, 1024),
     }
     for key, (name, box, width) in jobs.items():
         image = Image.open(PHOTO / name).convert("RGB")
