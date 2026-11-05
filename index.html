@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Velmora | Autumn / Winter 2026</title>
+    <meta name="description" content="Velmora makes fewer things, and makes them slowly. A fictional fashion house, created as a concept by Trizen Technologies." />
+    <meta name="theme-color" content="#f2ede4" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <div class="intro" data-intro aria-hidden="true">
+      <div class="intro__panel" data-intro-panel></div>
+      <div class="intro__word" data-intro-word>
+        <span class="mask"><span>V</span></span><span class="mask"><span>E</span></span><span class="mask"><span>L</span></span><span class="mask"><span>M</span></span><span class="mask"><span>O</span></span><span class="mask"><span>R</span></span><span class="mask"><span>A</span></span>
+      </div>
+      <p class="intro__note" data-intro-note>Autumn / Winter 2026</p>
+    </div>
+
+    <header class="nav" data-nav data-tone="light">
+      <nav class="nav__links nav__links--left" aria-label="Main">
+        <a href="#the-edit" data-scroll>Women</a>
+        <a href="#the-edit" data-scroll>Men</a>
+        <a href="#lookbook" data-scroll>Lookbook</a>
+        <a href="#craft" data-scroll>The House</a>
+      </nav>
+      <button class="nav__menu" type="button" data-menu-open aria-expanded="false" aria-controls="menu">Menu</button>
+      <a class="nav__logo" href="#main" data-scroll data-nav-logo aria-label="Velmora, back to top">VELMORA</a>
+      <div class="nav__links nav__links--right">
+        <button type="button" class="nav__search" data-search-open>Search</button>
+        <button type="button" data-bag-open>Bag (<span data-bag-count>0</span>)</button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" data-hero aria-label="Introduction">
+        <div class="hero__stage" data-hero-stage>
+          <div class="hero__film" data-hero-film>
+            <div class="hero__frame" data-hero-frame>
+            <video
+              class="hero__video"
+              data-hero-video
+              muted
+              loop
+              playsinline
+              preload="auto"
+              aria-hidden="true"
+            ></video>
+            </div>
+            <div class="hero__shade"></div>
+            <p class="hero__title hero__title--light" data-hero-title aria-hidden="true">
+              <span class="hero__line hero__line--first"><span>Quiet,</span></span>
+              <span class="hero__line hero__line--second"><span><em>on purpose.</em></span></span>
+            </p>
+          </div>
+          <div class="hero__meta" data-hero-meta>
+            <span>Collection 01</span>
+            <span>Autumn / Winter 2026</span>
+            <span class="hero__scroll">Scroll</span>
+          </div>
+          <canvas class="hero__cloth" data-cloth aria-hidden="true"></canvas>
+          <h1 class="hero__title hero__title--ink" data-hero-title>
+            <span class="hero__line hero__line--first"><span>Quiet,</span></span>
+            <span class="hero__line hero__line--second"><span><em>on purpose.</em></span></span>
+          </h1>
+        </div>
+      </section>
+
+      <section class="statement" aria-label="About Velmora">
+        <p class="label">The House</p>
+        <p class="statement__text" data-statement>Velmora makes fewer things, and makes them slowly. Wool, silk and cashmere, cut to outlast the season.</p>
+      </section>
+
+      <section class="split" aria-label="Shop by collection">
+        <a class="panel" href="#the-edit" data-scroll data-cursor="Enter" data-panel>
+          <div class="panel__media" data-reveal-media>
+            <video data-lazy-video data-src="panels/women.mp4" poster="" muted loop playsinline preload="none" aria-hidden="true"></video>
+          </div>
+          <div class="panel__text">
+            <span class="panel__index">01</span>
+            <h2 class="panel__title" data-rise>Women</h2>
+          </div>
+        </a>
+        <a class="panel" href="#the-edit" data-scroll data-cursor="Enter" data-panel>
+          <div class="panel__media" data-reveal-media>
+            <video data-lazy-video data-src="panels/men.mp4" poster="" muted loop playsinline preload="none" aria-hidden="true"></video>
+          </div>
+          <div class="panel__text">
+            <span class="panel__index">02</span>
+            <h2 class="panel__title" data-rise>Men</h2>
+          </div>
+        </a>
+      </section>
+
+      <section class="edit" id="the-edit" data-edit aria-label="The Edit">
+        <div class="edit__stage" data-edit-stage>
+          <div class="edit__track" data-edit-track>
+            <div class="edit__lead">
+              <p class="label">Six pieces</p>
+              <h2 class="edit__title" data-rise>The <em>Edit</em></h2>
+              <p class="edit__intro">Chosen from the first collection, and made to be worn for years.</p>
+            </div>
+            <div class="edit__cards" data-edit-cards></div>
+          </div>
+          <div class="edit__progress" aria-hidden="true">
+            <span data-edit-count>01</span>
+            <span class="edit__bar"><i data-edit-bar></i></span>
+            <span>06</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="lookbook" id="lookbook" aria-label="Lookbook preview">
+        <div class="lookbook__cover" data-lookbook-cover>
+          <div class="lookbook__cover-media" data-reveal-media>
+            <img data-parallax="10" src="media/lookbook/steps.webp" alt="The woman and the man sit on wide limestone steps in morning light" width="1672" height="941" loading="lazy" />
+          </div>
+          <div class="lookbook__cover-text">
+            <p class="label">Autumn / Winter 2026</p>
+            <h2 class="lookbook__title" data-rise>Lookbook</h2>
+          </div>
+        </div>
+        <div class="lookbook__spread">
+          <figure class="lookbook__item lookbook__item--walking" data-drift="-14">
+            <div data-reveal-media><img data-parallax="8" src="media/lookbook/walking.webp" alt="A woman in an oat wool coat walks through a shaft of light" width="1024" height="1536" loading="lazy" /></div>
+          </figure>
+          <div class="lookbook__copy" data-drift="10">
+            <p class="lookbook__quote" data-lines>A quiet story, told in stone, wool and silk.</p>
+            <button type="button" class="link" data-soon="The Lookbook page">Enter the Lookbook</button>
+          </div>
+          <figure class="lookbook__item lookbook__item--silk" data-drift="8">
+            <div data-reveal-media><img data-parallax="8" src="media/lookbook/silk.webp" alt="Oxblood silk resting in soft folds on a limestone step" width="1672" height="941" loading="lazy" /></div>
+          </figure>
+          <figure class="lookbook__item lookbook__item--portrait" data-drift="-22">
+            <div data-reveal-media><img data-parallax="8" src="media/lookbook/portrait.webp" alt="A man in a charcoal overcoat beneath a limestone arch" width="814" height="1086" loading="lazy" /></div>
+          </figure>
+        </div>
+      </section>
+
+      <section class="craft" id="craft" data-craft aria-label="The Craft">
+        <div class="craft__stage">
+          <canvas class="craft__canvas" data-craft-canvas aria-hidden="true"></canvas>
+          <div class="craft__shade"></div>
+          <div class="craft__text">
+            <h2 class="craft__title">The <em>Craft</em></h2>
+            <ol class="craft__facts">
+              <li data-craft-fact><span>01</span>Silk crepe, woven in Como.</li>
+              <li data-craft-fact><span>02</span>Wool, finished by hand in Biella.</li>
+              <li data-craft-fact><span>03</span>Small runs. Never restocked.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="invite" id="trizen" aria-label="Built by Trizen">
+        <p class="label" data-fade>A concept by Trizen Technologies</p>
+        <h2 class="invite__title" data-invite-title>Imagine this for <em>your brand.</em></h2>
+        <div data-fade>
+          <button type="button" class="button" data-magnetic data-soon="The Built by Trizen page"><span>Built by Trizen</span></button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__columns">
+        <nav aria-label="Footer">
+          <a href="#the-edit" data-scroll>Women</a>
+          <a href="#the-edit" data-scroll>Men</a>
+          <a href="#lookbook" data-scroll>Lookbook</a>
+          <a href="#craft" data-scroll>The House</a>
+          <a href="#trizen" data-scroll>Built by Trizen</a>
+        </nav>
+        <p class="footer__note">Fictional concept by Trizen Technologies.</p>
+      </div>
+      <p class="footer__word" data-footer-word aria-label="Velmora">VELMORA</p>
+    </footer>
+
+    <div class="menu" id="menu" data-menu aria-hidden="true">
+      <div class="menu__head">
+        <span class="menu__logo">VELMORA</span>
+        <button type="button" data-menu-close>Close</button>
+      </div>
+      <nav class="menu__links" aria-label="Mobile">
+        <a href="#the-edit" data-scroll><span>Women</span></a>
+        <a href="#the-edit" data-scroll><span>Men</span></a>
+        <a href="#lookbook" data-scroll><span>Lookbook</span></a>
+        <a href="#craft" data-scroll><span>The House</span></a>
+        <a href="#trizen" data-scroll><span>Built by Trizen</span></a>
+      </nav>
+      <button type="button" class="menu__search" data-search-open>Search</button>
+    </div>
+
+    <div class="sheet" data-search aria-hidden="true" role="dialog" aria-label="Search">
+      <div class="sheet__head">
+        <label class="sheet__field">
+          <span class="visually-hidden">Search the collection</span>
+          <input type="search" placeholder="Search the collection" autocomplete="off" data-search-input />
+        </label>
+        <button type="button" data-search-close>Close</button>
+      </div>
+      <ul class="sheet__results" data-search-results></ul>
+    </div>
+
+    <aside class="drawer" data-bag aria-hidden="true" aria-label="Your bag">
+      <div class="drawer__head">
+        <h2>Your Bag</h2>
+        <button type="button" data-bag-close>Close</button>
+      </div>
+      <div class="drawer__body" data-bag-items></div>
+      <div class="drawer__foot" data-bag-foot hidden>
+        <span>Subtotal</span>
+        <span data-bag-total></span>
+      </div>
+    </aside>
+    <div class="scrim" data-scrim></div>
+
+    <div class="toast" data-toast role="status" aria-live="polite"></div>
+    <div class="cursor" data-cursor-dot aria-hidden="true"><span data-cursor-label></span></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
