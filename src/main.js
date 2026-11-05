@@ -1,5 +1,5 @@
-import '@fontsource-variable/bodoni-moda/opsz.css';
-import '@fontsource-variable/bodoni-moda/opsz-italic.css';
+import '@fontsource-variable/cormorant-garamond/wght.css';
+import '@fontsource-variable/cormorant-garamond/wght-italic.css';
 import '@fontsource-variable/instrument-sans/wght.css';
 import './styles/main.css';
 

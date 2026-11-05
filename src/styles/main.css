@@ -5,7 +5,7 @@
   --oxblood: #4a1416;
   --muted: #6b6257;
 
-  --serif: 'Bodoni Moda Variable', 'Bodoni 72', Didot, Georgia, serif;
+  --serif: 'Cormorant Garamond Variable', 'Cormorant Garamond', Garamond, Georgia, serif;
   --sans: 'Instrument Sans Variable', 'Helvetica Neue', Arial, sans-serif;
 
   --gutter: clamp(20px, 3.2vw, 48px);
@@ -71,29 +71,6 @@ ul {
 
 em {
   font-style: italic;
-}
-
-/* Bodoni's finest optical size loses its thin strokes on screen, so display type uses a sturdier cut. */
-.intro__word,
-.nav__logo,
-.menu__logo,
-.footer__word {
-  font-optical-sizing: none;
-  font-variation-settings: 'opsz' 18;
-}
-
-.hero__title,
-.statement__text,
-.panel__title,
-.edit__title,
-.lookbook__title,
-.lookbook__quote,
-.craft__title,
-.craft__facts,
-.invite__title,
-.menu__links {
-  font-optical-sizing: none;
-  font-variation-settings: 'opsz' 26;
 }
 
 img,
@@ -275,7 +252,7 @@ button {
 
 .nav__logo {
   font-family: var(--serif);
-  font-size: clamp(20px, 1.9vw, 26px);
+  font-size: clamp(22px, 2.1vw, 29px);
   letter-spacing: 0.04em;
   line-height: 1;
 }
@@ -285,10 +262,19 @@ button {
 }
 
 /* Hero */
+/* The film ends in the frame set by these values. Without animation it simply sits there. */
 .hero {
+  --film-top: 72px;
+  --film-bottom: var(--gutter);
+  --film-width: 56vw;
+  --title-size: clamp(3.8rem, 6.6vw, 8.2rem);
   position: relative;
-  height: 250svh;
+  height: 100svh;
   background: var(--ivory);
+}
+
+.hero.is-moving {
+  height: 220svh;
 }
 
 .hero__stage {
@@ -298,15 +284,38 @@ button {
   overflow: hidden;
 }
 
-.hero__film {
+.hero__film,
+.hero__slot {
   position: absolute;
-  inset: 0;
+  top: var(--film-top);
+  right: var(--gutter);
+  bottom: var(--film-bottom);
+  width: var(--film-width);
+}
+
+.hero__slot {
+  visibility: hidden;
+}
+
+.hero__film {
+  overflow: hidden;
   background: var(--paper);
+}
+
+.hero.is-moving .hero__film {
+  inset: 0;
+  width: auto;
+  will-change: clip-path;
 }
 
 .hero__frame {
   position: absolute;
   inset: 0;
+}
+
+.hero.is-moving .hero__frame {
+  inset: 0 auto auto 0;
+  transform-origin: 0 0;
   will-change: transform;
 }
 
@@ -314,8 +323,14 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 62% 6%;
+  object-position: 90% 0%;
   will-change: transform;
+}
+
+/* These only exist to sit on the moving film. */
+.hero:not(.is-moving) .hero__shade,
+.hero:not(.is-moving) .hero__title--light {
+  display: none;
 }
 
 .hero__shade {
@@ -326,31 +341,87 @@ button {
     linear-gradient(to bottom, rgb(20 18 16 / 0.44), rgb(20 18 16 / 0) 18%);
 }
 
-.hero__title {
+/* The words read as one group, centred against the film beside them. */
+.hero__copy {
   position: absolute;
+  top: var(--film-top);
+  bottom: var(--film-bottom);
   left: var(--gutter);
-  right: var(--gutter);
-  bottom: calc(var(--gutter) + 34px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: calc(100% - var(--film-width) - var(--gutter) * 2 - clamp(24px, 3vw, 56px));
+}
+
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: clamp(18px, 1.9vw, 32px);
+}
+
+.hero__eyebrow::after {
+  content: '';
+  width: clamp(48px, 5vw, 96px);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+.hero__title {
   font-family: var(--serif);
-  font-size: clamp(3.6rem, 11.6vw, 13.5rem);
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  line-height: 0.94;
+  font-size: var(--title-size);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: 0.98;
 }
 
-/* Starts hidden, then shows only where the sheet has reached it. */
+.hero.is-moving .hero__title {
+  will-change: transform;
+}
+
 .hero__title--ink {
-  right: auto;
   color: var(--ink);
-  clip-path: inset(100% 0 0 0);
 }
 
-.hero__title--ink .hero__line > span {
-  will-change: auto;
+.hero__title--ink em {
+  color: var(--oxblood);
 }
 
 .hero__title--light {
+  position: absolute;
   color: var(--ivory);
+}
+
+.hero__statement {
+  max-width: 31em;
+  margin-top: clamp(18px, 1.7vw, 30px);
+  color: rgb(20 18 16 / 0.74);
+  font-size: clamp(15px, 1vw, 19px);
+  line-height: 1.55;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px clamp(28px, 2.4vw, 46px);
+  margin-top: clamp(26px, 2.1vw, 40px);
+}
+
+.hero__actions .link {
+  padding-bottom: 7px;
+  font-size: clamp(12px, 0.7vw, 13.5px);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* A bigger area to tap than the small text itself. */
+.hero__actions .link::before {
+  content: '';
+  position: absolute;
+  inset: -14px -8px;
 }
 
 .hero__line {
@@ -363,89 +434,6 @@ button {
 
 .hero__line > span {
   display: inline-block;
-  will-change: transform;
-}
-
-.hero__line--second {
-  margin-left: 0.86em;
-}
-
-.hero__meta {
-  position: absolute;
-  left: var(--gutter);
-  right: var(--gutter);
-  bottom: 18px;
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  color: var(--ivory);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.hero__scroll {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.hero__scroll::after {
-  content: '';
-  width: 34px;
-  height: 1px;
-  background: currentColor;
-  animation: scroll-line 2.6s var(--ease-soft) infinite;
-}
-
-@keyframes scroll-line {
-  0% {
-    transform: scaleX(0);
-    transform-origin: left;
-  }
-  50% {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-  51% {
-    transform: scaleX(1);
-    transform-origin: right;
-  }
-  100% {
-    transform: scaleX(0);
-    transform-origin: right;
-  }
-}
-
-/* The ivory sheet that rises over the film. It is drawn by src/home/cloth.js. */
-.hero__cloth {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-/* Brand statement */
-.statement {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: 16px;
-  padding: clamp(80px, 13vw, 200px) var(--gutter) clamp(110px, 17vw, 260px);
-}
-
-.statement .label {
-  grid-column: 1 / span 2;
-  padding-top: 0.9em;
-}
-
-.statement__text {
-  grid-column: 3 / -1;
-  font-family: var(--serif);
-  font-size: clamp(2.2rem, 5.7vw, 6.6rem);
-  line-height: 1.06;
-  letter-spacing: -0.01em;
 }
 
 /* Women and Men */
@@ -456,7 +444,7 @@ button {
   gap: var(--gap);
   width: min(100%, calc(140svh + var(--gap)));
   height: 100svh;
-  margin-inline: auto;
+  margin: clamp(40px, 6vw, 96px) auto 0;
 }
 
 .panel {
@@ -632,7 +620,7 @@ button {
 
 .card__name {
   font-family: var(--serif);
-  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+  font-size: clamp(1.3rem, 1.7vw, 1.65rem);
   line-height: 1.2;
 }
 
@@ -754,7 +742,7 @@ button {
 .lookbook__quote {
   margin-bottom: 1.1em;
   font-family: var(--serif);
-  font-size: clamp(1.9rem, 3.5vw, 4rem);
+  font-size: clamp(2.1rem, 3.9vw, 4.5rem);
   line-height: 1.1;
 }
 
@@ -868,7 +856,7 @@ button {
   width: min(44vw, 680px);
   height: 3.4em;
   font-family: var(--serif);
-  font-size: clamp(1.8rem, 3.5vw, 4rem);
+  font-size: clamp(2rem, 3.9vw, 4.5rem);
   line-height: 1.1;
   text-align: right;
 }
@@ -965,7 +953,7 @@ button {
   display: grid;
   gap: 6px;
   font-family: var(--serif);
-  font-size: clamp(1.3rem, 2vw, 1.9rem);
+  font-size: clamp(1.5rem, 2.3vw, 2.2rem);
 }
 
 .footer__columns nav a {
@@ -1020,7 +1008,7 @@ button {
 
 .menu__logo {
   font-family: var(--serif);
-  font-size: 22px;
+  font-size: 25px;
   letter-spacing: 0.04em;
 }
 
@@ -1121,7 +1109,7 @@ button {
   background: none;
   color: var(--ink);
   font-family: var(--serif);
-  font-size: clamp(1.7rem, 3.6vw, 3rem);
+  font-size: clamp(1.9rem, 4vw, 3.4rem);
 }
 
 .sheet__field input::-webkit-search-cancel-button {
@@ -1161,7 +1149,7 @@ button {
   display: block;
   margin-top: 8px;
   font-family: var(--serif);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 400;
 }
 
@@ -1203,7 +1191,7 @@ button {
 
 .drawer__head h2 {
   font-family: var(--serif);
-  font-size: 1.7rem;
+  font-size: 1.95rem;
   font-weight: 400;
 }
 
@@ -1242,7 +1230,7 @@ button {
 .bag-item strong {
   display: block;
   font-family: var(--serif);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 400;
 }
 
@@ -1336,35 +1324,59 @@ button {
     justify-self: start;
   }
 
+  /* On phones the frame fills the top of the page, and the words sit underneath it. */
+  .hero {
+    --film-top: 58px;
+    --title-size: 14vw;
+    --film-bottom: calc(var(--title-size) * 2 + 11.5rem);
+  }
+
+  .hero__film,
+  .hero__slot {
+    left: var(--gutter);
+    width: auto;
+  }
+
   .hero__video {
-    object-position: 50% 30%;
+    object-position: 50% 15%;
   }
 
-  .hero__title {
-    bottom: calc(var(--gutter) + 26px);
-    font-size: 17.4vw;
+  .hero__copy {
+    top: auto;
+    right: var(--gutter);
+    bottom: var(--gutter);
+    justify-content: flex-end;
+    width: auto;
   }
 
-  .hero__line--second {
-    margin-left: 0;
+  .hero__eyebrow {
+    margin-bottom: 10px;
   }
 
-  .hero__meta span:nth-child(1) {
-    display: none;
+  .hero__statement {
+    margin-top: 10px;
+    font-size: 14.5px;
+    line-height: 1.45;
   }
 
-  .statement {
-    display: block;
+  /* Sized so both links share one row, down to the smallest phones. */
+  .hero__actions {
+    flex-wrap: nowrap;
+    gap: clamp(14px, 4.5vw, 26px);
+    margin-top: 16px;
   }
 
-  .statement .label {
-    padding: 0 0 1.4em;
+  .hero__actions .link {
+    font-size: clamp(10.5px, 2.9vw, 12px);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
   }
 
   .split {
     flex-direction: column;
     width: 100%;
     height: auto;
+    margin-top: 0;
   }
 
   .panel {
@@ -1514,10 +1526,6 @@ button {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .hero {
-    height: 100svh;
   }
 
   .craft {

@@ -1,20 +1,5 @@
 import { DESKTOP, SplitText, fitText, gsap, reducedMotion } from '../lib/motion.js';
 
-function statement() {
-  const element = document.querySelector('[data-statement]');
-  const { words } = SplitText.create(element, { type: 'words' });
-  gsap.fromTo(
-    words,
-    { opacity: 0.12 },
-    {
-      opacity: 1,
-      ease: 'none',
-      stagger: 0.1,
-      scrollTrigger: { trigger: element, start: 'top 78%', end: 'bottom 48%', scrub: 0.4 },
-    },
-  );
-}
-
 function risingTitles() {
   gsap.utils.toArray('[data-rise]').forEach((element) => {
     const { chars } = SplitText.create(element, {
@@ -151,7 +136,6 @@ export function initReveals() {
     fitText(word, word.parentElement.clientWidth * 0.92);
     return;
   }
-  statement();
   risingTitles();
   risingLines();
   revealMedia();
