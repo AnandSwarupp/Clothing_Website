@@ -743,6 +743,10 @@ button {
   text-align: center;
 }
 
+.story__text--light {
+  display: none;
+}
+
 .story__line {
   font-family: var(--serif);
   font-size: clamp(1.4rem, 1.75vw, 2.1rem);
@@ -1708,13 +1712,23 @@ button {
     right: var(--gutter);
   }
 
-  /* The words sit on a small ivory plate, and the photos pass behind it. */
+  /* The photos pass behind the words, and the ivory copy shows only over them. The soft
+     shadow keeps it readable on the palest stone. */
   .story.is-moving .story__text {
     inset: 50% auto auto 50%;
     width: max-content;
-    padding: 1rem 1.625rem;
-    background: var(--ivory);
     transform: translate(-50%, -50%);
+  }
+
+  .story.is-moving .story__text--light {
+    display: flex;
+    color: var(--ivory);
+    clip-path: inset(100%);
+    text-shadow: 0 0 0.5em rgb(20 18 16 / 0.6);
+  }
+
+  .story.is-moving .story__text--light .link {
+    pointer-events: none;
   }
 
   .story.is-moving .story__words {
