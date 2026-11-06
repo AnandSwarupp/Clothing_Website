@@ -8,7 +8,7 @@
   --serif: 'Cormorant Garamond Variable', 'Cormorant Garamond', Garamond, Georgia, serif;
   --sans: 'Instrument Sans Variable', 'Helvetica Neue', Arial, sans-serif;
 
-  --gutter: clamp(20px, 3.2vw, 48px);
+  --gutter: clamp(1.25rem, 3.2vw, 3rem);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-soft: cubic-bezier(0.65, 0, 0.35, 1);
 }
@@ -19,9 +19,13 @@
   box-sizing: border-box;
 }
 
+/* Sizes are in rem, so this one line scales the whole design. Up to a 1915 by 867 screen it
+   stays at the browser default. Above that everything grows together, led by whichever of the
+   width or height has less room, so a big monitor matches a laptop, only larger. */
 html {
   -webkit-text-size-adjust: 100%;
   background: var(--ivory);
+  font-size: max(100%, min(0.8355vw, 1.845svh));
 }
 
 html.lenis,
@@ -47,7 +51,7 @@ body {
   background: var(--ivory);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -97,7 +101,7 @@ button {
 
 :focus-visible {
   outline: 2px solid currentColor;
-  outline-offset: 3px;
+  outline-offset: 0.1875rem;
 }
 
 .visually-hidden,
@@ -112,16 +116,16 @@ button {
 
 .skip:focus {
   position: fixed;
-  top: 12px;
-  left: 12px;
+  top: 0.75rem;
+  left: 0.75rem;
   z-index: 200;
-  padding: 10px 14px;
+  padding: 0.625rem 0.875rem;
   background: var(--ink);
   color: var(--ivory);
 }
 
 .label {
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -180,7 +184,7 @@ button {
   left: 0;
   right: 0;
   color: var(--ink);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-align: center;
@@ -197,9 +201,9 @@ button {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding: 18px var(--gutter);
+  padding: 1.125rem var(--gutter);
   color: var(--ivory);
-  font-size: 13px;
+  font-size: 0.8125rem;
   letter-spacing: 0.02em;
   transition:
     color 0.5s ease,
@@ -216,7 +220,7 @@ button {
 
 .nav__links {
   display: flex;
-  gap: clamp(16px, 2vw, 30px);
+  gap: clamp(1rem, 2vw, 1.875rem);
 }
 
 .nav__links--right {
@@ -226,7 +230,7 @@ button {
 .nav__links a,
 .nav__links button {
   position: relative;
-  padding: 4px 0;
+  padding: 0.25rem 0;
 }
 
 .nav__links a::after,
@@ -252,7 +256,7 @@ button {
 
 .nav__logo {
   font-family: var(--serif);
-  font-size: clamp(22px, 2.1vw, 29px);
+  font-size: clamp(1.375rem, 2.1vw, 1.8125rem);
   letter-spacing: 0.04em;
   line-height: 1;
 }
@@ -264,7 +268,7 @@ button {
 /* Hero */
 /* The film ends in the frame set by these values. Without animation it simply sits there. */
 .hero {
-  --film-top: 72px;
+  --film-top: 4.5rem;
   --film-bottom: var(--gutter);
   --film-width: 56vw;
   --title-size: clamp(3.8rem, 6.6vw, 8.2rem);
@@ -351,19 +355,19 @@ button {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  width: calc(100% - var(--film-width) - var(--gutter) * 2 - clamp(24px, 3vw, 56px));
+  width: calc(100% - var(--film-width) - var(--gutter) * 2 - clamp(1.5rem, 3vw, 3.5rem));
 }
 
 .hero__eyebrow {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: clamp(18px, 1.9vw, 32px);
+  gap: 0.875rem;
+  margin-bottom: clamp(1.125rem, 1.9vw, 2rem);
 }
 
 .hero__eyebrow::after {
   content: '';
-  width: clamp(48px, 5vw, 96px);
+  width: clamp(3rem, 5vw, 6rem);
   height: 1px;
   background: currentColor;
   opacity: 0.45;
@@ -396,23 +400,23 @@ button {
 
 .hero__statement {
   max-width: 31em;
-  margin-top: clamp(18px, 1.7vw, 30px);
+  margin-top: clamp(1.125rem, 1.7vw, 1.875rem);
   color: rgb(20 18 16 / 0.74);
-  font-size: clamp(15px, 1vw, 19px);
+  font-size: clamp(0.9375rem, 1vw, 1.1875rem);
   line-height: 1.55;
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px clamp(28px, 2.4vw, 46px);
-  margin-top: clamp(26px, 2.1vw, 40px);
+  gap: 0.875rem clamp(1.75rem, 2.4vw, 2.875rem);
+  margin-top: clamp(1.625rem, 2.1vw, 2.5rem);
 }
 
 .hero__actions .link,
 .story__text .link {
-  padding-bottom: 7px;
-  font-size: clamp(12px, 0.7vw, 13.5px);
+  padding-bottom: 0.4375rem;
+  font-size: clamp(0.75rem, 0.7vw, 0.84375rem);
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -423,7 +427,7 @@ button {
 .story__text .link::before {
   content: '';
   position: absolute;
-  inset: -14px -8px;
+  inset: -0.875rem -0.5rem;
 }
 
 .hero__line {
@@ -441,12 +445,12 @@ button {
 /* Women and Men */
 /* Each panel stays tall enough that the whole person is in frame, on any screen shape. */
 .split {
-  --gap: clamp(6px, 0.6vw, 10px);
+  --gap: clamp(0.375rem, 0.6vw, 0.625rem);
   display: flex;
   gap: var(--gap);
   width: min(100%, calc(140svh + var(--gap)));
   height: 100svh;
-  margin: clamp(40px, 6vw, 96px) auto 0;
+  margin: clamp(2.5rem, 6vw, 6rem) auto 0;
 }
 
 .panel {
@@ -491,7 +495,7 @@ button {
   z-index: 1;
   left: var(--gutter);
   right: var(--gutter);
-  bottom: clamp(16px, 2.4vw, 36px);
+  bottom: clamp(1rem, 2.4vw, 2.25rem);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -509,7 +513,7 @@ button {
 
 .panel__index {
   padding-bottom: 1.2em;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.14em;
 }
@@ -532,7 +536,7 @@ button {
 .edit__track {
   display: flex;
   align-items: center;
-  gap: clamp(40px, 7vw, 120px);
+  gap: clamp(2.5rem, 7vw, 7.5rem);
   width: max-content;
   padding: 0 var(--gutter);
   will-change: transform;
@@ -540,7 +544,7 @@ button {
 
 .edit__lead {
   flex: none;
-  width: clamp(300px, 36vw, 620px);
+  width: clamp(18.75rem, 36vw, 38.75rem);
 }
 
 .edit__title {
@@ -555,19 +559,19 @@ button {
 .edit__intro {
   max-width: 26em;
   color: var(--muted);
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .edit__cards {
   display: flex;
   align-items: center;
-  gap: clamp(20px, 2.6vw, 44px);
+  gap: clamp(1.25rem, 2.6vw, 2.75rem);
 }
 
 .card {
   display: block;
   flex: none;
-  width: min(23vw, 46svh, 400px);
+  width: min(23vw, 46svh, 25rem);
   text-align: left;
 }
 
@@ -616,8 +620,8 @@ button {
 .card__text {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 0 12px;
-  padding-top: 12px;
+  gap: 0 0.75rem;
+  padding-top: 0.75rem;
 }
 
 .card__name {
@@ -627,30 +631,30 @@ button {
 }
 
 .card__price {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .card__detail {
   grid-column: 1 / -1;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 .edit__progress {
   position: absolute;
   left: var(--gutter);
-  bottom: 22px;
+  bottom: 1.375rem;
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 12px;
+  gap: 0.75rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.14em;
 }
 
 .edit__bar {
   position: relative;
-  width: clamp(120px, 16vw, 260px);
+  width: clamp(7.5rem, 16vw, 16.25rem);
   height: 1px;
   background: rgb(20 18 16 / 0.2);
 }
@@ -715,14 +719,14 @@ button {
 .story__stage {
   display: flex;
   flex-direction: column-reverse;
-  gap: clamp(36px, 5vw, 72px);
-  padding: clamp(64px, 9vw, 140px) var(--gutter);
+  gap: clamp(2.25rem, 5vw, 4.5rem);
+  padding: clamp(4rem, 9vw, 8.75rem) var(--gutter);
 }
 
 .story__track {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 1rem;
 }
 
 .story__pair {
@@ -750,7 +754,7 @@ button {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0 0.4em;
-  margin-bottom: clamp(10px, 1.1vw, 20px);
+  margin-bottom: clamp(0.625rem, 1.1vw, 1.25rem);
   font-family: var(--serif);
   font-size: clamp(5.4rem, min(11.5vw, 26svh), 13.5rem);
   font-weight: 500;
@@ -855,8 +859,8 @@ button {
 
 .link {
   position: relative;
-  padding-bottom: 4px;
-  font-size: 14px;
+  padding-bottom: 0.25rem;
+  font-size: 0.875rem;
 }
 
 .link::after {
@@ -971,9 +975,9 @@ button {
   align-items: flex-start;
   justify-content: center;
   min-height: 100svh;
-  margin-top: clamp(56px, 6vw, 110px);
+  margin-top: clamp(3.5rem, 6vw, 6.875rem);
   overflow: hidden;
-  padding: 120px var(--gutter);
+  padding: 7.5rem var(--gutter);
   background: var(--ink);
   color: var(--ivory);
 }
@@ -1013,17 +1017,17 @@ button {
 
 .invite__label {
   position: absolute;
-  top: clamp(72px, 10svh, 104px);
+  top: clamp(4.5rem, 10svh, 6.5rem);
   left: var(--gutter);
   display: flex;
   align-items: center;
-  gap: clamp(14px, 1.4vw, 24px);
+  gap: clamp(0.875rem, 1.4vw, 1.5rem);
 }
 
 .invite__mark {
   display: inline-flex;
   align-items: center;
-  gap: clamp(14px, 1.4vw, 24px);
+  gap: clamp(0.875rem, 1.4vw, 1.5rem);
   font-family: var(--serif);
   font-size: clamp(1.2rem, 1.25vw, 1.5rem);
   font-weight: 500;
@@ -1032,7 +1036,7 @@ button {
 
 .invite__mark::after {
   content: '';
-  width: clamp(40px, 4.4vw, 84px);
+  width: clamp(2.5rem, 4.4vw, 5.25rem);
   height: 1px;
   background: currentColor;
   opacity: 0.6;
@@ -1043,7 +1047,7 @@ button {
 }
 
 .invite__title {
-  margin-bottom: clamp(26px, 2.6vw, 48px);
+  margin-bottom: clamp(1.625rem, 2.6vw, 3rem);
   font-family: var(--serif);
   font-size: clamp(3rem, min(6.2vw, 15svh), 7.8rem);
   font-weight: 500;
@@ -1055,9 +1059,9 @@ button {
   position: relative;
   display: inline-block;
   overflow: hidden;
-  padding: 17px 30px;
+  padding: 1.0625rem 1.875rem;
   border: 1px solid rgb(242 237 228 / 0.7);
-  font-size: 14px;
+  font-size: 0.875rem;
   letter-spacing: 0.02em;
   transition:
     color 0.6s var(--ease),
@@ -1077,7 +1081,7 @@ button {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 22px;
+  gap: 1.375rem;
 }
 
 .button svg {
@@ -1085,7 +1089,7 @@ button {
 }
 
 .button:hover svg {
-  transform: translateX(5px);
+  transform: translateX(0.3125rem);
 }
 
 .button:hover {
@@ -1103,7 +1107,7 @@ button {
   --rule: rgb(242 237 228 / 0.16);
   --soft: rgb(242 237 228 / 0.58);
   overflow: hidden;
-  padding: clamp(56px, 6.4vw, 112px) var(--gutter) clamp(18px, 1.6vw, 28px);
+  padding: clamp(3.5rem, 6.4vw, 7rem) var(--gutter) clamp(1.125rem, 1.6vw, 1.75rem);
   border-top: 1px solid var(--rule);
   background: var(--ink);
   color: var(--ivory);
@@ -1113,8 +1117,8 @@ button {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 40px;
-  padding-bottom: clamp(48px, 6.4vw, 112px);
+  gap: 2.5rem;
+  padding-bottom: clamp(3rem, 6.4vw, 7rem);
 }
 
 .footer__line {
@@ -1125,23 +1129,23 @@ button {
 
 .footer__links {
   display: flex;
-  gap: clamp(48px, 7.4vw, 148px);
+  gap: clamp(3rem, 7.4vw, 9.25rem);
 }
 
 .footer__group {
   display: grid;
   align-content: start;
   justify-items: start;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .footer__group .label {
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
   color: var(--soft);
 }
 
 .footer__group a {
-  font-size: 15px;
+  font-size: 0.9375rem;
   transition: opacity 0.4s ease;
 }
 
@@ -1165,12 +1169,12 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  margin-top: clamp(14px, 1.6vw, 28px);
-  padding-top: 16px;
+  gap: 1.5rem;
+  margin-top: clamp(0.875rem, 1.6vw, 1.75rem);
+  padding-top: 1rem;
   border-top: 1px solid var(--rule);
   color: var(--soft);
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 .footer__bottom a {
@@ -1184,7 +1188,7 @@ button {
   z-index: 70;
   display: flex;
   flex-direction: column;
-  padding: 18px var(--gutter) 28px;
+  padding: 1.125rem var(--gutter) 1.75rem;
   background: var(--ivory);
   clip-path: inset(0 0 100% 0);
   transition: clip-path 0.9s var(--ease-soft);
@@ -1200,12 +1204,12 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 .menu__logo {
   font-family: var(--serif);
-  font-size: 25px;
+  font-size: 1.5625rem;
   letter-spacing: 0.04em;
 }
 
@@ -1248,7 +1252,7 @@ button {
 
 .menu__search {
   align-self: flex-start;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .scrim {
@@ -1274,7 +1278,7 @@ button {
   z-index: 80;
   max-height: 88svh;
   overflow: auto;
-  padding: 22px var(--gutter) 36px;
+  padding: 1.375rem var(--gutter) 2.25rem;
   background: var(--ivory);
   transform: translateY(-101%);
   transition:
@@ -1291,9 +1295,9 @@ button {
 .sheet__head {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
   border-bottom: 1px solid var(--ink);
-  padding-bottom: 10px;
+  padding-bottom: 0.625rem;
 }
 
 .sheet__field {
@@ -1323,9 +1327,9 @@ button {
 
 .sheet__results {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 16px;
-  margin-top: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(9.375rem, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .sheet__results button {
@@ -1344,7 +1348,7 @@ button {
 
 .sheet__results strong {
   display: block;
-  margin-top: 8px;
+  margin-top: 0.5rem;
   font-family: var(--serif);
   font-size: 1.25rem;
   font-weight: 400;
@@ -1363,8 +1367,8 @@ button {
   z-index: 80;
   display: flex;
   flex-direction: column;
-  width: min(460px, 100vw);
-  padding: 22px var(--gutter);
+  width: min(28.75rem, 100vw);
+  padding: 1.375rem var(--gutter);
   background: var(--ivory);
   transform: translateX(101%);
   transition:
@@ -1382,7 +1386,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 14px;
+  padding-bottom: 0.875rem;
   border-bottom: 1px solid var(--ink);
 }
 
@@ -1395,7 +1399,7 @@ button {
 .drawer__body {
   flex: 1;
   overflow: auto;
-  padding-block: 18px;
+  padding-block: 1.125rem;
 }
 
 .drawer__empty {
@@ -1404,21 +1408,21 @@ button {
 
 .drawer__empty button {
   display: block;
-  margin-top: 12px;
+  margin-top: 0.75rem;
   color: var(--ink);
   text-decoration: underline;
-  text-underline-offset: 4px;
+  text-underline-offset: 0.25rem;
 }
 
 .bag-item {
   display: grid;
-  grid-template-columns: 76px 1fr auto;
-  gap: 14px;
-  padding-bottom: 16px;
+  grid-template-columns: 4.75rem 1fr auto;
+  gap: 0.875rem;
+  padding-bottom: 1rem;
 }
 
 .bag-item img {
-  width: 76px;
+  width: 4.75rem;
   aspect-ratio: 2 / 3;
   object-fit: cover;
   object-position: 50% 62%;
@@ -1433,23 +1437,23 @@ button {
 
 .bag-item span {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 .bag-item button {
   display: block;
-  margin-top: 8px;
-  font-size: 13px;
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 0.1875rem;
 }
 
 .drawer__foot {
   display: flex;
   justify-content: space-between;
-  padding-top: 14px;
+  padding-top: 0.875rem;
   border-top: 1px solid var(--ink);
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .drawer__foot[hidden] {
@@ -1459,16 +1463,16 @@ button {
 .toast {
   position: fixed;
   left: 50%;
-  bottom: 24px;
+  bottom: 1.5rem;
   z-index: 90;
-  max-width: calc(100vw - 40px);
-  padding: 12px 18px;
+  max-width: calc(100vw - 2.5rem);
+  padding: 0.75rem 1.125rem;
   background: var(--ink);
   color: var(--ivory);
-  font-size: 14px;
+  font-size: 0.875rem;
   opacity: 0;
   pointer-events: none;
-  transform: translate(-50%, 12px);
+  transform: translate(-50%, 0.75rem);
   transition:
     opacity 0.5s ease,
     transform 0.7s var(--ease);
@@ -1486,11 +1490,11 @@ button {
   left: 0;
   z-index: 95;
   display: none;
-  margin: 18px 0 0 14px;
-  padding: 6px 9px 5px;
+  margin: 1.125rem 0 0 0.875rem;
+  padding: 0.375rem 0.5625rem 0.3125rem;
   background: var(--ink);
   color: var(--ivory);
-  font-size: 9.5px;
+  font-size: 0.59375rem;
   font-weight: 500;
   letter-spacing: 0.16em;
   line-height: 1;
@@ -1513,7 +1517,7 @@ button {
 /* Phones and small tablets */
 @media (max-width: 899px) {
   .nav {
-    padding-block: 14px;
+    padding-block: 0.875rem;
   }
 
   .nav__links--left,
@@ -1528,7 +1532,7 @@ button {
 
   /* On phones the frame fills the top of the page, and the words sit underneath it. */
   .hero {
-    --film-top: 58px;
+    --film-top: 3.625rem;
     --title-size: 14vw;
     --film-bottom: calc(var(--title-size) * 2 + 11.5rem);
   }
@@ -1552,24 +1556,24 @@ button {
   }
 
   .hero__eyebrow {
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
   }
 
   .hero__statement {
-    margin-top: 10px;
-    font-size: 14.5px;
+    margin-top: 0.625rem;
+    font-size: 0.90625rem;
     line-height: 1.45;
   }
 
   /* Sized so both links share one row, down to the smallest phones. */
   .hero__actions {
     flex-wrap: nowrap;
-    gap: clamp(14px, 4.5vw, 26px);
-    margin-top: 16px;
+    gap: clamp(0.875rem, 4.5vw, 1.625rem);
+    margin-top: 1rem;
   }
 
   .hero__actions .link {
-    font-size: clamp(10.5px, 2.9vw, 12px);
+    font-size: clamp(0.65625rem, 2.9vw, 0.75rem);
     letter-spacing: 0.1em;
     white-space: nowrap;
   }
@@ -1591,7 +1595,7 @@ button {
   }
 
   .edit {
-    padding-block: 72px 56px;
+    padding-block: 4.5rem 3.5rem;
   }
 
   .edit__stage {
@@ -1609,7 +1613,7 @@ button {
 
   .edit__lead {
     width: auto;
-    padding: 0 var(--gutter) 30px;
+    padding: 0 var(--gutter) 1.875rem;
   }
 
   .edit__title {
@@ -1617,7 +1621,7 @@ button {
   }
 
   .edit__cards {
-    gap: 12px;
+    gap: 0.75rem;
     padding: 0 var(--gutter);
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -1641,7 +1645,7 @@ button {
 
   .edit__progress {
     position: static;
-    padding: 26px var(--gutter) 0;
+    padding: 1.625rem var(--gutter) 0;
   }
 
   .edit__bar {
@@ -1650,7 +1654,7 @@ button {
 
   .lookbook__cover {
     height: auto;
-    padding-top: 12px;
+    padding-top: 0.75rem;
   }
 
   .lookbook__cover-text {
@@ -1659,7 +1663,7 @@ button {
     left: auto;
     z-index: 1;
     transform: none;
-    padding: 16px var(--gutter) 0;
+    padding: 1rem var(--gutter) 0;
   }
 
   .lookbook__title {
@@ -1684,7 +1688,7 @@ button {
     bottom: auto;
     left: auto;
     width: auto;
-    height: min(33svh, calc(50svh - 120px));
+    height: min(33svh, calc(50svh - 7.5rem));
   }
 
   .story.is-moving .story__photo--courtyard,
@@ -1695,12 +1699,12 @@ button {
   }
 
   .story.is-moving .story__photo:first-child {
-    bottom: calc(50% + 112px);
+    bottom: calc(50% + 7rem);
     left: var(--gutter);
   }
 
   .story.is-moving .story__photo:last-child {
-    top: calc(50% + 112px);
+    top: calc(50% + 7rem);
     right: var(--gutter);
   }
 
@@ -1708,7 +1712,7 @@ button {
   .story.is-moving .story__text {
     inset: 50% auto auto 50%;
     width: max-content;
-    padding: 16px 26px;
+    padding: 1rem 1.625rem;
     background: var(--ivory);
     transform: translate(-50%, -50%);
   }
@@ -1729,17 +1733,17 @@ button {
     display: grid;
     grid-template-columns: repeat(3, auto);
     justify-content: space-between;
-    gap: 24px;
+    gap: 1.5rem;
     width: 100%;
   }
 
   .footer__group a {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .footer__bottom {
     flex-wrap: wrap;
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .footer__bottom span:nth-child(2) {
@@ -1752,7 +1756,7 @@ button {
 @media (max-width: 899px), (max-aspect-ratio: 3/2) {
   .invite {
     justify-content: flex-end;
-    padding: 0 var(--gutter) 56px;
+    padding: 0 var(--gutter) 3.5rem;
   }
 
   .invite__photo {
@@ -1776,8 +1780,8 @@ button {
     left: auto;
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
-    margin-bottom: 14px;
+    gap: 0.375rem;
+    margin-bottom: 0.875rem;
   }
 
   .invite__mark::after {
@@ -1785,7 +1789,7 @@ button {
   }
 
   .invite__label .label {
-    font-size: 11px;
+    font-size: 0.6875rem;
     letter-spacing: 0.1em;
   }
 
@@ -1808,7 +1812,7 @@ button {
     display: block;
     height: auto;
     overflow: visible;
-    padding-block: 80px;
+    padding-block: 5rem;
   }
 
   .edit__track {
@@ -1820,7 +1824,7 @@ button {
     flex-wrap: wrap;
     align-items: flex-start;
     overflow: visible;
-    padding-top: 32px;
+    padding-top: 2rem;
   }
 
   .card:nth-child(n) {
