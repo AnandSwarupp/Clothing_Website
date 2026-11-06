@@ -909,88 +909,154 @@ button {
   height: 100%;
 }
 
+/* Dimmed evenly, so the words read the same over the pale stone and the dark silk. */
 .craft__shade {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(to left, rgb(20 10 10 / 0.5), rgb(20 10 10 / 0) 62%),
-    linear-gradient(to bottom, rgb(20 10 10 / 0.42), rgb(20 10 10 / 0) 42%);
+  background: radial-gradient(ellipse at center, rgb(20 10 10 / 0.6), rgb(20 10 10 / 0.34) 78%);
 }
 
 .craft__text {
   position: absolute;
   inset: 0;
-  color: var(--ivory);
-}
-
-.craft__title {
-  position: absolute;
-  top: calc(var(--gutter) + 56px);
-  right: var(--gutter);
-  font-family: var(--serif);
-  font-size: clamp(3.4rem, 9vw, 10rem);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1;
-}
-
-.craft__facts {
-  position: absolute;
-  right: var(--gutter);
-  bottom: clamp(40px, 11svh, 110px);
-  width: min(44vw, 680px);
-  height: 3.4em;
-  font-family: var(--serif);
-  font-size: clamp(2rem, 3.9vw, 4.5rem);
-  line-height: 1.1;
-  text-align: right;
-}
-
-.craft__facts li {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.craft__facts span {
-  display: block;
-  margin-bottom: 0.9em;
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-}
-
-/* Trizen invitation */
-.invite {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(28px, 4vw, 56px);
-  min-height: 100svh;
-  padding: 120px var(--gutter);
-  background: var(--ink);
+  gap: 0.8em;
   color: var(--ivory);
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 3.4vw, 3.8rem);
   text-align: center;
 }
 
-.invite__title {
-  max-width: 11em;
+.craft__facts {
+  display: contents;
+}
+
+.craft__message {
+  font-size: inherit;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: 1.04;
+}
+
+.craft__line {
+  display: block;
+  overflow: hidden;
+  padding: 0 0.1em 0.24em;
+  margin-bottom: -0.24em;
+}
+
+.craft__line > span {
+  display: inline-block;
+}
+
+/* The big version. Every message shares the middle of the screen, one at a time. */
+.craft.is-moving .craft__text {
+  display: grid;
+  place-items: center;
+  font-size: min(7.6vw, 17svh);
+}
+
+.craft.is-moving .craft__message {
+  grid-area: 1 / 1;
+}
+
+/* Trizen invitation */
+.invite {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100svh;
+  margin-top: clamp(56px, 6vw, 110px);
+  overflow: hidden;
+  padding: 120px var(--gutter);
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+/* The photo is as tall as the screen and anchored right, so the people always stand the same
+   distance from the right edge. The fade is measured from there, to stop just short of them. */
+.invite__photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(100%, 178svh);
+  overflow: hidden;
+}
+
+.invite__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 100% 8%;
+}
+
+.invite__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to left,
+      rgb(20 18 16 / 0.2),
+      rgb(20 18 16 / 0.24) 96svh,
+      rgb(20 18 16 / 0.84) 128svh,
+      var(--ink) 150svh
+    ),
+    linear-gradient(to top, rgb(20 18 16 / 0.5), rgb(20 18 16 / 0) 34%);
+}
+
+.invite__label {
+  position: absolute;
+  top: clamp(72px, 10svh, 104px);
+  left: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.4vw, 24px);
+}
+
+.invite__mark {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(14px, 1.4vw, 24px);
   font-family: var(--serif);
-  font-size: clamp(3.2rem, 9.6vw, 11rem);
-  font-weight: 400;
+  font-size: clamp(1.2rem, 1.25vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+}
+
+.invite__mark::after {
+  content: '';
+  width: clamp(40px, 4.4vw, 84px);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.invite__content {
+  position: relative;
+}
+
+.invite__title {
+  margin-bottom: clamp(26px, 2.6vw, 48px);
+  font-family: var(--serif);
+  font-size: clamp(3rem, min(6.2vw, 15svh), 7.8rem);
+  font-weight: 500;
   letter-spacing: -0.015em;
-  line-height: 1;
+  line-height: 1.02;
 }
 
 .button {
   position: relative;
   display: inline-block;
   overflow: hidden;
-  padding: 18px 44px;
-  border: 1px solid rgb(242 237 228 / 0.5);
+  padding: 17px 30px;
+  border: 1px solid rgb(242 237 228 / 0.7);
   font-size: 14px;
   letter-spacing: 0.02em;
   transition:
@@ -1009,6 +1075,17 @@ button {
 
 .button span {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.button svg {
+  transition: transform 0.7s var(--ease);
+}
+
+.button:hover svg {
+  transform: translateX(5px);
 }
 
 .button:hover {
@@ -1021,48 +1098,83 @@ button {
 }
 
 /* Footer */
+/* Stays dark, carrying on from the closing section, with thin rules for structure. */
 .footer {
+  --rule: rgb(242 237 228 / 0.16);
+  --soft: rgb(242 237 228 / 0.58);
   overflow: hidden;
-  padding: clamp(40px, 6vw, 88px) var(--gutter) 0;
+  padding: clamp(56px, 6.4vw, 112px) var(--gutter) clamp(18px, 1.6vw, 28px);
+  border-top: 1px solid var(--rule);
+  background: var(--ink);
+  color: var(--ivory);
 }
 
-.footer__columns {
+.footer__top {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 24px;
-  padding-bottom: clamp(36px, 7vw, 110px);
+  gap: 40px;
+  padding-bottom: clamp(48px, 6.4vw, 112px);
 }
 
-.footer__columns nav {
-  display: grid;
-  gap: 6px;
+.footer__line {
   font-family: var(--serif);
-  font-size: clamp(1.5rem, 2.3vw, 2.2rem);
+  font-size: clamp(2.2rem, 3.4vw, 4rem);
+  line-height: 1.04;
 }
 
-.footer__columns nav a {
+.footer__links {
+  display: flex;
+  gap: clamp(48px, 7.4vw, 148px);
+}
+
+.footer__group {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 10px;
+}
+
+.footer__group .label {
+  margin-bottom: 8px;
+  color: var(--soft);
+}
+
+.footer__group a {
+  font-size: 15px;
   transition: opacity 0.4s ease;
 }
 
-.footer__columns nav:hover a:not(:hover) {
-  opacity: 0.35;
-}
-
-.footer__note {
-  color: var(--muted);
-  font-size: 13px;
-  text-align: right;
+@media (hover: hover) {
+  .footer__links:hover a:not(:hover) {
+    opacity: 0.4;
+  }
 }
 
 .footer__word {
   display: inline-block;
-  margin-bottom: -0.06em;
   font-family: var(--serif);
   font-size: 23vw;
-  letter-spacing: 0.01em;
+  font-weight: 300;
+  letter-spacing: 0.03em;
   line-height: 1;
   white-space: nowrap;
+}
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: clamp(14px, 1.6vw, 28px);
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+  color: var(--soft);
+  font-size: 13px;
+}
+
+.footer__bottom a {
+  color: var(--ivory);
 }
 
 /* Menu, search and bag */
@@ -1367,30 +1479,35 @@ button {
   transform: translate(-50%, 0);
 }
 
+/* A small tag beside the pointer, like a woven label sewn into a garment. */
 .cursor {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 95;
   display: none;
-  place-items: center;
-  width: 92px;
-  height: 92px;
-  margin: -46px 0 0 -46px;
-  border-radius: 50%;
-  background: var(--ivory);
-  color: var(--ink);
-  font-size: 13px;
+  margin: 18px 0 0 14px;
+  padding: 6px 9px 5px;
+  background: var(--ink);
+  color: var(--ivory);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  opacity: 0;
   pointer-events: none;
-  transform: scale(0);
+  text-transform: uppercase;
+  visibility: hidden;
+}
+
+/* Cancels the space after the last letter, so the word sits in the true centre. */
+.cursor span {
+  display: block;
+  margin-right: -0.16em;
 }
 
 .has-cursor .cursor {
-  display: grid;
-}
-
-.has-cursor [data-cursor] {
-  cursor: none;
+  display: block;
 }
 
 /* Phones and small tablets */
@@ -1600,34 +1717,80 @@ button {
     font-size: min(21vw, 6rem);
   }
 
-  .craft__shade {
-    background: linear-gradient(to top, rgb(20 10 10 / 0.72), rgb(20 10 10 / 0.08) 62%);
+  .craft.is-moving .craft__text {
+    font-size: 12vw;
   }
 
-  .craft__title {
-    top: auto;
-    left: var(--gutter);
-    right: auto;
-    bottom: 200px;
-    font-size: 17vw;
+  .footer__top {
+    flex-direction: column;
   }
 
-  .craft__facts {
-    left: var(--gutter);
-    right: var(--gutter);
-    bottom: 48px;
+  .footer__links {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .footer__group a {
+    font-size: 14px;
+  }
+
+  .footer__bottom {
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+
+  .footer__bottom span:nth-child(2) {
+    order: 3;
+    width: 100%;
+  }
+}
+
+/* Phones and squarer screens have no room beside the people, so the words go underneath. */
+@media (max-width: 899px), (max-aspect-ratio: 3/2) {
+  .invite {
+    justify-content: flex-end;
+    padding: 0 var(--gutter) 56px;
+  }
+
+  .invite__photo {
+    bottom: auto;
+    left: 0;
     width: auto;
-    font-size: 7.4vw;
-    text-align: left;
+    height: 62svh;
   }
 
-  .footer__columns {
+  .invite__photo img {
+    object-position: 86% 0;
+  }
+
+  .invite__photo::after {
+    background: linear-gradient(to top, var(--ink), rgb(20 18 16 / 0.2) 42%, rgb(20 18 16 / 0.1));
+  }
+
+  .invite__label {
+    position: relative;
+    top: auto;
+    left: auto;
     flex-direction: column;
     align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 14px;
   }
 
-  .footer__note {
-    text-align: left;
+  .invite__mark::after {
+    display: none;
+  }
+
+  .invite__label .label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  .invite__title {
+    font-size: min(13vw, 10svh);
   }
 }
 
@@ -1638,10 +1801,6 @@ button {
 
   .craft {
     height: 100svh;
-  }
-
-  .craft__facts {
-    height: auto;
   }
 
   .edit__stage {

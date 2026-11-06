@@ -168,6 +168,7 @@ def lookbook():
         # Trimmed from the left so the two of them fill more of the frame.
         "arrival": ("Hero start, wide.png", (360, 0, 1672, 941), 1312),
         "dress": ("Women panel.png", None, 1024),
+        "closing": ("Hero start, arch.png", None, 1672),
     }
     for key, (name, box, width) in jobs.items():
         image = Image.open(PHOTO / name).convert("RGB")

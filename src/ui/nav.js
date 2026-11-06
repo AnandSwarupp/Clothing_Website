@@ -41,7 +41,7 @@ export function initNav() {
     ['.lookbook', 'dark'],
     ['.craft', 'light'],
     ['.invite', 'light'],
-    ['.footer', 'dark'],
+    ['.footer', 'light'],
   ];
   tones.forEach(([selector, tone]) => {
     ScrollTrigger.create({

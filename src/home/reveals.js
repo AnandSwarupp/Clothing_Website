@@ -55,6 +55,13 @@ function parallax() {
 
 function invitation() {
   const title = document.querySelector('[data-invite-title]');
+  gsap.from('[data-invite-photo] img', {
+    scale: 1.08,
+    transformOrigin: '100% 8%',
+    duration: 2.6,
+    ease: 'expo.out',
+    scrollTrigger: { trigger: title, start: 'top 80%' },
+  });
   const { words } = SplitText.create(title, { type: 'words' });
   gsap.from(words, {
     autoAlpha: 0,

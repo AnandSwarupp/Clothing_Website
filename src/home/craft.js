@@ -4,8 +4,9 @@ import { ScrollTrigger, gsap, isPortraitScreen, reducedMotion } from '../lib/mot
 const section = document.querySelector('[data-craft]');
 const canvas = section.querySelector('[data-craft-canvas]');
 const context = canvas.getContext('2d');
-const facts = gsap.utils.toArray('[data-craft-fact]');
-const title = section.querySelector('.craft__title');
+const messages = gsap.utils
+  .toArray('[data-craft-message]')
+  .map((message) => gsap.utils.toArray('.craft__line > span', message));
 
 const FRAMES = { desktop: 80, phone: 60 };
 
@@ -75,7 +76,6 @@ export function initCraft() {
 
   if (reducedMotion) {
     load(Math.floor(count / 2));
-    gsap.set(facts, { autoAlpha: 1, position: 'static' });
     return;
   }
 
@@ -86,22 +86,55 @@ export function initCraft() {
     onEnterBack: loadFrames,
   });
 
-  gsap.set(facts, { autoAlpha: 0, y: 40 });
+  section.classList.add('is-moving');
+  gsap.set(messages.flat(), { yPercent: 115 });
 
-  const timeline = gsap.timeline({
-    defaults: { ease: 'none' },
-    scrollTrigger: { trigger: section, start: 'top top', end: 'bottom bottom', scrub: 0.5 },
-  });
+  let shown = -1;
 
-  timeline.to(state, { frame: count - 1, duration: 1, onUpdate: draw }, 0);
-  timeline.from(title, { autoAlpha: 0, y: 30, duration: 0.08, ease: 'power2.out' }, 0.02);
-
-  const slot = 0.3;
-  facts.forEach((fact, index) => {
-    const start = 0.05 + index * slot;
-    timeline.to(fact, { autoAlpha: 1, y: 0, duration: 0.07, ease: 'power2.out' }, start);
-    if (index < facts.length - 1) {
-      timeline.to(fact, { autoAlpha: 0, y: -40, duration: 0.07, ease: 'power2.in' }, start + slot - 0.08);
+  /** One message leaves, then the next rises into the same place, line by line. */
+  function show(next) {
+    if (next === shown) return;
+    const forward = next > shown;
+    const leaving = messages[shown];
+    const entering = messages[next];
+    if (leaving) {
+      gsap.to(leaving, {
+        yPercent: forward ? -115 : 115,
+        duration: 0.6,
+        ease: 'power2.in',
+        stagger: 0.04,
+        overwrite: true,
+      });
     }
+    if (entering) {
+      gsap.fromTo(
+        entering,
+        { yPercent: forward ? 115 : -115 },
+        { yPercent: 0, duration: 1.4, delay: leaving ? 0.4 : 0, ease: 'expo.out', stagger: 0.1, overwrite: true },
+      );
+    }
+    shown = next;
+  }
+
+  ScrollTrigger.create({
+    trigger: section,
+    start: 'top 55%',
+    onEnter: () => show(0),
+    onLeaveBack: () => show(-1),
   });
+
+  const lastMessage = messages.length - 1;
+
+  gsap
+    .timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.5,
+        onUpdate: (self) => show(Math.min(lastMessage, Math.floor(self.progress * messages.length))),
+      },
+    })
+    .to(state, { frame: count - 1, duration: 1, onUpdate: draw }, 0);
 }

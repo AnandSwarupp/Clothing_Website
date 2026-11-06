@@ -1,14 +1,14 @@
 import { gsap, reducedMotion } from '../lib/motion.js';
 
-/** A soft label that follows the pointer over images, plus a magnetic pull on buttons. Mouse only. */
+/** A small tag that follows the pointer over images, plus a magnetic pull on buttons. Mouse only. */
 export function initCursor() {
   if (reducedMotion || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   document.documentElement.classList.add('has-cursor');
 
   const dot = document.querySelector('[data-cursor-dot]');
   const label = document.querySelector('[data-cursor-label]');
-  const moveX = gsap.quickTo(dot, 'x', { duration: 0.5, ease: 'power3' });
-  const moveY = gsap.quickTo(dot, 'y', { duration: 0.5, ease: 'power3' });
+  const moveX = gsap.quickTo(dot, 'x', { duration: 0.25, ease: 'power3' });
+  const moveY = gsap.quickTo(dot, 'y', { duration: 0.25, ease: 'power3' });
 
   const pointer = { x: -1, y: -1 };
   let pending = false;
@@ -18,7 +18,7 @@ export function initCursor() {
     pending = false;
     const target = document.elementFromPoint(pointer.x, pointer.y)?.closest('[data-cursor]');
     if (target) label.textContent = target.dataset.cursor;
-    gsap.to(dot, { scale: target ? 1 : 0, duration: target ? 0.5 : 0.4, overwrite: 'auto' });
+    gsap.to(dot, { autoAlpha: target ? 1 : 0, duration: target ? 0.35 : 0.25, overwrite: 'auto' });
   };
 
   const scheduleRefresh = () => {

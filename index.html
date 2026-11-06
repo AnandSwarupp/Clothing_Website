@@ -159,37 +159,77 @@
           <canvas class="craft__canvas" data-craft-canvas aria-hidden="true"></canvas>
           <div class="craft__shade"></div>
           <div class="craft__text">
-            <h2 class="craft__title">The <em>Craft</em></h2>
+            <h2 class="craft__message" data-craft-message>
+              <span class="craft__line"><span>The <em>Craft</em></span></span>
+            </h2>
             <ol class="craft__facts">
-              <li data-craft-fact><span>01</span>Silk crepe, woven in Como.</li>
-              <li data-craft-fact><span>02</span>Wool, finished by hand in Biella.</li>
-              <li data-craft-fact><span>03</span>Small runs. Never restocked.</li>
+              <li class="craft__message" data-craft-message>
+                <span class="craft__line"><span>Silk crepe,</span></span>
+                <span class="craft__line"><span><em>woven in Como.</em></span></span>
+              </li>
+              <li class="craft__message" data-craft-message>
+                <span class="craft__line"><span>Wool, finished</span></span>
+                <span class="craft__line"><span><em>by hand in Biella.</em></span></span>
+              </li>
+              <li class="craft__message" data-craft-message>
+                <span class="craft__line"><span>Small runs.</span></span>
+                <span class="craft__line"><span><em>Never restocked.</em></span></span>
+              </li>
             </ol>
           </div>
         </div>
       </section>
 
       <section class="invite" id="trizen" aria-label="Built by Trizen">
-        <p class="label" data-fade>A concept by Trizen Technologies</p>
-        <h2 class="invite__title" data-invite-title>Imagine this for <em>your brand.</em></h2>
-        <div data-fade>
-          <button type="button" class="button" data-magnetic data-soon="The Built by Trizen page"><span>Built by Trizen</span></button>
+        <div class="invite__photo" data-invite-photo>
+          <img src="media/lookbook/closing.webp" alt="The woman and the man stand together beside the limestone arches" width="1672" height="941" loading="lazy" />
+        </div>
+        <p class="invite__label" data-fade>
+          <span class="invite__mark">TRIZEN</span>
+          <span class="label">A concept by Trizen Technologies</span>
+        </p>
+        <div class="invite__content">
+          <h2 class="invite__title" data-invite-title>Imagine this<br />for your <em>brand.</em></h2>
+          <div data-fade>
+            <a class="button" href="https://www.trizentechnologies.com/contact" target="_blank" rel="noopener" data-magnetic>
+              <span>
+                Built by Trizen
+                <svg viewBox="0 0 24 12" width="24" height="12" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 6h23M17.5.5 23 6l-5.500 5.500" /></svg>
+              </span>
+            </a>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <div class="footer__columns">
-        <nav aria-label="Footer">
-          <a href="#the-edit" data-scroll>Women</a>
-          <a href="#the-edit" data-scroll>Men</a>
-          <a href="#lookbook" data-scroll>Lookbook</a>
-          <a href="#craft" data-scroll>The House</a>
-          <a href="#trizen" data-scroll>Built by Trizen</a>
+      <div class="footer__top">
+        <p class="footer__line">Quiet,<br /><em>on purpose.</em></p>
+        <nav class="footer__links" aria-label="Footer">
+          <div class="footer__group">
+            <p class="label">Shop</p>
+            <a href="#the-edit" data-scroll>Women</a>
+            <a href="#the-edit" data-scroll>Men</a>
+            <a href="#the-edit" data-scroll>The Edit</a>
+          </div>
+          <div class="footer__group">
+            <p class="label">The House</p>
+            <a href="#lookbook" data-scroll>Lookbook</a>
+            <a href="#craft" data-scroll>The Craft</a>
+          </div>
+          <div class="footer__group">
+            <p class="label">Trizen</p>
+            <a href="#trizen" data-scroll>Built by Trizen</a>
+            <a href="https://www.trizentechnologies.com/contact" target="_blank" rel="noopener">Contact</a>
+          </div>
         </nav>
-        <p class="footer__note">Fictional concept by Trizen Technologies.</p>
       </div>
       <p class="footer__word" data-footer-word aria-label="Velmora">VELMORA</p>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Velmora</span>
+        <span>Fictional concept by Trizen Technologies.</span>
+        <a href="#main" data-scroll>Back to top</a>
+      </div>
     </footer>
 
     <div class="menu" id="menu" data-menu aria-hidden="true">
